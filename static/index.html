@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobBuddy</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="brand">
+        <h1 class="brand-name">JobBuddy</h1>
+        <p class="brand-tagline">Your AI job application assistant</p>
+    </div>
+
+    <p class="subtitle">Paste your resume and a job description to see how well you match.</p>
+
+    <div class="inputs">
+        <div class="field">
+            <label for="resume">Your resume</label>
+            <textarea id="resume" placeholder="Paste your resume text here, or upload a PDF below..."></textarea>
+            <div class="upload-row">
+                <input type="file" id="pdfInput" accept=".pdf" onchange="uploadPdf()" />
+                <span id="uploadStatus"></span>
+            </div>
+        </div>
+        <div class="field">
+            <label for="jd">Job description</label>
+            <textarea id="jd" placeholder="Paste the job posting here..."></textarea>
+        </div>
+    </div>
+
+    <button id="analyzeBtn" onclick="analyze()">Analyze match</button>
+    <div class="error" id="errorBox"></div>
+
+    <div id="results">
+        <div class="score-row">
+            <div class="score-circle" id="scoreCircle">–</div>
+            <p id="scoreReasoning"></p>
+        </div>
+        <div class="card">
+            <h3>Matching skills</h3>
+            <div class="tags" id="matchingSkills"></div>
+            <button id="tailorBtn" onclick="tailorResume()">Tailor my resume</button>
+            <div class="card" id="tailorCard" style="display: none;">
+                <h3>Tailored resume</h3>
+                <div class="score-compare">
+                    <span class="score-pill old" id="oldScorePill">–</span>
+                    <span class="arrow">→</span>
+                    <span class="score-pill new" id="newScorePill">–</span>
+                </div>
+                <p id="newScoreReasoning" class="reasoning"></p>
+
+                <h4>Changes made</h4>
+                <ul id="changesList"></ul>
+
+                <h4>Keywords now included</h4>
+                <div class="tags" id="keywordsAdded"></div>
+
+                <h4>Honest gaps (not added — no evidence in your resume)</h4>
+                <div class="tags" id="honestGaps"></div>
+
+                <h4>New resume</h4>
+                <pre id="tailoredText"></pre>
+                <button class="secondary" onclick="downloadResume()">Download resume (PDF)</button>
+            </div>
+            <button id="coverBtn" onclick="generateCoverLetter()">Generate cover letter</button>
+            <div class="card" id="coverCard" style="display: none;">
+                <h3>Cover letter</h3>
+                <pre id="coverText"></pre>
+                <button class="secondary" onclick="copyCoverLetter()">Copy to clipboard</button>
+                <button class="secondary" onclick="downloadCoverLetter()">Download PDF</button>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Missing skills</h3>
+            <div class="tags" id="missingSkills"></div>
+        </div>
+        <div class="card">
+            <h3>Suggestions</h3>
+            <div id="suggestions"></div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+
+</html>

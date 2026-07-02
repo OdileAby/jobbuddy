@@ -1,0 +1,351 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #0f1117;
+    --surface: #191c26;
+    --surface-2: #222634;
+    --border: #2e3345;
+    --text: #e8eaf0;
+    --text-dim: #9aa0b4;
+    --accent: #7c6cf0;
+    --accent-hover: #8f80f5;
+    --green: #34c77b;
+    --green-bg: rgba(52, 199, 123, 0.14);
+    --red: #f26d6d;
+    --red-bg: rgba(242, 109, 109, 0.12);
+    --amber: #e8a33d;
+}
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 32px;
+}
+
+h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    color: var(--text-dim);
+    margin-bottom: 28px;
+    font-size: 15px;
+}
+
+.inputs {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.field {
+    flex: 1;
+    min-width: 300px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin-bottom: 8px;
+}
+
+textarea {
+    width: 100%;
+    height: 320px;
+    padding: 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    resize: vertical;
+    transition: border-color 0.15s;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+textarea::placeholder {
+    color: #5a5f73;
+}
+
+button {
+    margin-top: 18px;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    color: white;
+    background: var(--accent);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+button:hover:not(:disabled) {
+    background: var(--accent-hover);
+}
+
+button:disabled {
+    background: #3a3f52;
+    color: #8b90a5;
+    cursor: wait;
+}
+
+button.secondary {
+    margin-top: 0;
+    padding: 8px 18px;
+    font-size: 13px;
+    background: var(--surface-2);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+button.secondary:hover {
+    background: #2a2f40;
+}
+
+.error {
+    margin-top: 16px;
+    padding: 12px 16px;
+    background: var(--red-bg);
+    border: 1px solid rgba(242, 109, 109, 0.3);
+    border-radius: 10px;
+    color: var(--red);
+    font-size: 14px;
+    display: none;
+}
+
+.upload-row {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+}
+
+input[type="file"] {
+    color: var(--text-dim);
+    font-size: 13px;
+}
+
+input[type="file"]::file-selector-button {
+    padding: 6px 14px;
+    margin-right: 10px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+#uploadStatus {
+    color: var(--text-dim);
+}
+
+#uploadStatus.ok {
+    color: var(--green);
+}
+
+#uploadStatus.err {
+    color: var(--red);
+}
+
+#results {
+    margin-top: 36px;
+    display: none;
+}
+
+.score-row {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 24px;
+}
+
+.score-circle {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    flex-shrink: 0;
+}
+
+.score-row p {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    margin-bottom: 16px;
+}
+
+.card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.card h4 {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
+    margin: 18px 0 10px;
+}
+
+.card ul {
+    padding-left: 20px;
+    font-size: 14px;
+    color: var(--text);
+}
+
+.card ul li {
+    margin-bottom: 6px;
+    line-height: 1.5;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    padding: 5px 13px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.tag.match {
+    background: var(--green-bg);
+    color: var(--green);
+}
+
+.tag.miss {
+    background: var(--red-bg);
+    color: var(--red);
+}
+
+.suggestion {
+    border-left: 3px solid var(--accent);
+    padding-left: 14px;
+    margin-bottom: 16px;
+}
+
+.suggestion .issue {
+    font-weight: 600;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.suggestion .fix {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+#coverText,
+#tailoredText {
+    white-space: pre-wrap;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+}
+
+.score-compare {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.score-pill {
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-size: 19px;
+    font-weight: 700;
+    color: white;
+}
+
+.score-pill.old {
+    background: #3a3f52;
+    color: var(--text-dim);
+}
+
+.score-pill.new {
+    background: var(--green);
+    color: #0b2417;
+}
+
+.arrow {
+    font-size: 22px;
+    color: var(--text-dim);
+}
+
+.reasoning {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.brand {
+    text-align: center;
+    margin-bottom: 56px;
+}
+
+.brand-name {
+    font-size: 34px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    background: linear-gradient(90deg, var(--accent), #a78bfa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 4px;
+}
+
+.brand-tagline {
+    color: var(--text-dim);
+    font-size: 14px;
+}
