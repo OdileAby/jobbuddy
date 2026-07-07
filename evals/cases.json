@@ -1,0 +1,91 @@
+[
+    {
+        "id": "strong_match",
+        "description": "Resume covers nearly all requirements - score should be high",
+        "resume": "Senior backend engineer with 6 years of Python experience. Expert in FastAPI and Django. Built and scaled REST APIs on AWS (EC2, Lambda, RDS) serving 2M requests/day. Deep PostgreSQL experience including query optimization. Run Kubernetes clusters in production. Built CI/CD pipelines with GitHub Actions. BS Computer Science.",
+        "job_description": "Hiring a backend engineer. Requirements: strong Python, FastAPI or Django, PostgreSQL, AWS, Kubernetes, CI/CD pipelines. 2+ years experience.",
+        "expect": {
+            "score_min": 80,
+            "score_max": 100,
+            "missing_skills_must_not_include": [
+                "Python",
+                "FastAPI",
+                "PostgreSQL",
+                "AWS",
+                "Kubernetes"
+            ]
+        }
+    },
+    {
+        "id": "moderate_match",
+        "description": "Our classic Jane Doe case - partial overlap, clear gaps",
+        "resume": "Jane Doe. Software engineer with 3 years of experience building web apps in Python and JavaScript. Built a REST API used by 10,000 users. Familiar with PostgreSQL, Git, and Docker basics. BS in Computer Science.",
+        "job_description": "We are hiring a backend engineer. Requirements: strong Python, experience with FastAPI or Django, PostgreSQL, AWS, Kubernetes, and CI/CD pipelines. 2+ years experience required.",
+        "expect": {
+            "score_min": 40,
+            "score_max": 70,
+            "missing_skills_must_include_any": [
+                "AWS",
+                "Kubernetes"
+            ],
+            "matching_skills_must_include_any": [
+                "Python",
+                "PostgreSQL"
+            ]
+        }
+    },
+    {
+        "id": "zero_overlap",
+        "description": "Completely unrelated career - score should be very low",
+        "resume": "Pastry chef with 8 years of experience in French patisserie. Led a team of 5 bakers. Expert in laminated doughs, chocolate work, and menu development. Certificate from Le Cordon Bleu.",
+        "job_description": "Hiring a backend engineer. Requirements: strong Python, FastAPI, PostgreSQL, AWS, Kubernetes, CI/CD. 2+ years experience.",
+        "expect": {
+            "score_min": 0,
+            "score_max": 25
+        }
+    },
+    {
+        "id": "fabrication_trap",
+        "description": "Tailored resume must NOT invent the missing skills",
+        "resume": "Junior developer with 1 year of experience. Built small web apps in Python with Flask. Comfortable with Git and SQLite. Self-taught, no degree.",
+        "job_description": "Hiring a cloud engineer. Requirements: AWS certified, Terraform, Kubernetes, Go programming, 5+ years experience.",
+        "endpoint": "tailor",
+        "expect": {
+            "tailored_must_not_contain": [
+                "Terraform",
+                "Kubernetes",
+                "AWS certified",
+                "Go programming"
+            ],
+            "honest_gaps_must_include_any": [
+                "Terraform",
+                "Kubernetes",
+                "AWS"
+            ]
+        }
+    },
+    {
+        "id": "keyword_surfacing",
+        "description": "Tailoring should surface legitimately supported keywords",
+        "resume": "Data analyst, 4 years. Query and transform large datasets, build automated reports, write complex joins and window functions in Postgres. Python scripting for data cleanup with pandas.",
+        "job_description": "Hiring a SQL-focused analytics engineer. Requirements: advanced SQL, PostgreSQL, Python, data pipeline automation.",
+        "endpoint": "tailor",
+        "expect": {
+            "new_score_min": 60,
+            "tailored_must_contain_any": [
+                "SQL",
+                "PostgreSQL"
+            ]
+        }
+    },
+    {
+        "id": "empty_ish_resume",
+        "description": "Minimal resume - system should not crash, score should be low",
+        "resume": "Recent graduate. Hard worker. Fast learner.",
+        "job_description": "Hiring a senior machine learning engineer. Requirements: PyTorch, distributed training, 7+ years experience, PhD preferred.",
+        "expect": {
+            "score_min": 0,
+            "score_max": 20
+        }
+    }
+]

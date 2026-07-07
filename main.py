@@ -206,8 +206,8 @@ def tailor_resume(request: Request, body: AnalyzeRequest):
             {
                 "role": "user",
                 "content": TAILOR_TEMPLATE.format(
-                    resume=request.resume,
-                    job_description=request.job_description,
+                    resume=body.resume,
+                    job_description=body.job_description,
                 ),
             }
         ],
@@ -217,7 +217,7 @@ def tailor_resume(request: Request, body: AnalyzeRequest):
 
     new_analysis = run_analysis(
         tailor_result["tailored_resume"],
-        request.job_description,
+        body.job_description,
     )
 
     return {
